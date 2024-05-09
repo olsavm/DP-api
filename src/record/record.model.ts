@@ -11,11 +11,31 @@ export interface TrackData {
 }
 
 interface Record extends Document {
+  startDate: string;
+  endDate: string;
+  userId: string;
+  distanceTravelled: number;
   trackData: TrackData[];
 }
 
 export const RecordSchema = new mongoose.Schema<Record>(
   {
+    distanceTravelled: {
+      type: Number,
+      required: true,
+    },
+    startDate: {
+      type: String,
+      required: true,
+    },
+    endDate: {
+      type: String,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
     trackData: [
       {
         type: Object,
@@ -28,5 +48,9 @@ export const RecordSchema = new mongoose.Schema<Record>(
 
 export interface TrackRecord extends mongoose.Document {
   _id: string;
+  userId: string;
+  startDate: string;
+  endDate: string;
+  distanceTravelled: number;
   trackData: TrackData[];
 }
